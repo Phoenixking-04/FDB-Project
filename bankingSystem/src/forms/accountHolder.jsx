@@ -20,7 +20,7 @@ const AccountHolder = () => {
 
     const fetchAccountHolders = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/accountHolders');
+            const response = await axios.get('http://localhost:5001/accountHolders');
             setAccountHolders(response.data);
         } catch (error) {
             console.error('Error fetching account holders:', error);
@@ -47,7 +47,7 @@ const AccountHolder = () => {
         }
 
         try {
-            await axios.post('http://localhost:5000/accountHolders', accountHolder);
+            await axios.post('http://localhost:5001/accountHolders', accountHolder);
             alert('Account Holder created successfully!');
             fetchAccountHolders();
             setAccountHolder({
@@ -67,7 +67,7 @@ const AccountHolder = () => {
     const handleUpdate = async (id) => {
         const updatedAccountHolder = accountHolders.find(holder => holder.Account_Holder_ID === id);
         try {
-            await axios.put(`http://localhost:5000/accountHolders/${id}`, updatedAccountHolder);
+            await axios.put(`http://localhost:5001/accountHolders/${id}`, updatedAccountHolder);
             alert('Account Holder updated successfully!');
             fetchAccountHolders();
         } catch (error) {

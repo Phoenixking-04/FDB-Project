@@ -21,7 +21,7 @@ const CardTransaction = () => {
 
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/cardTransactions');
+            const response = await axios.get('http://localhost:5001/cardTransactionsall');
             setTransactions(response.data);
         } catch (error) {
             console.error('Error fetching transactions:', error);
@@ -36,7 +36,7 @@ const CardTransaction = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/cardTransactions', transaction);
+            await axios.post('http://localhost:5001/cardTransactions', transaction);
             alert('Transaction created successfully!');
             fetchTransactions();
             setTransaction({
@@ -57,7 +57,7 @@ const CardTransaction = () => {
     const handleUpdate = async (id) => {
         const updatedTransaction = transactions.find(trans => trans.Transaction_ID === id);
         try {
-            await axios.put(`http://localhost:5000/cardTransactions/${id}`, updatedTransaction);
+            await axios.put(`http://localhost:5001/cardTransactions/${id}`, updatedTransaction);
             alert('Transaction updated successfully!');
             fetchTransactions();
         } catch (error) {

@@ -59,7 +59,7 @@ const LoanTable = () => {
         formattedLoan.End_Date = new Date(formattedLoan.End_Date).toISOString().split('T')[0];
       }
 
-      const response = await fetch(`http://localhost:5001/loansall/${editedLoan.Loan_ID}`, {
+      const response = await fetch(`http://localhost:5001/loans/${editedLoan.Loan_ID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

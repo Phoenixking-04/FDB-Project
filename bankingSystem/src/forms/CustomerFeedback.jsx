@@ -10,7 +10,7 @@ const CustomerFeedback = () => {
 
     const fetchFeedbacks = async () => {
         try {
-            const response = await axios.get('http://localhost:5001/feedback');
+            const response = await axios.get('http://localhost:5001/feedbacks');
             setFeedbacks(response.data);
         } catch (error) {
             console.error('Error fetching feedback:', error);

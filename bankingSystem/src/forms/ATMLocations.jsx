@@ -20,7 +20,7 @@ const ATMLocations = () => {
 
     const fetchATMs = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/atms');
+            const response = await axios.get('http://localhost:5001/atms');
             setAtms(response.data);
         } catch (error) {
             console.error('Error fetching ATMs:', error);
@@ -48,7 +48,7 @@ const ATMLocations = () => {
         }
 
         try {
-            await axios.post('http://localhost:5000/atms', atm);
+            await axios.post('http://localhost:5001/atms', atm);
             alert('ATM created successfully!');
             fetchATMs();
             setAtm({
@@ -68,7 +68,7 @@ const ATMLocations = () => {
     const handleUpdate = async (id) => {
         const updatedATM = atms.find(atm => atm.ATM_ID === id);
         try {
-            await axios.put(`http://localhost:5000/atms/${id}`, updatedATM);
+            await axios.put(`http://localhost:5001/atms/${id}`, updatedATM);
             alert('ATM updated successfully!');
             fetchATMs();
         } catch (error) {

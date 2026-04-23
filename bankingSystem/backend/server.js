@@ -184,7 +184,8 @@ app.delete('/atmTransactions/:id', deleteEntity('ATM_Transactions', 'ATM_Transac
 
 app.post('/cards', createEntity('Cards', ['User_ID', 'Card_Type', 'Expiry_Date', 'Card_Number', 'CVV', 'Issue_Date', 'Status']));
 app.get('/cardsall', getAllEntities('Cards'));
-app.get('/Cards/:userId', (req, res) => {
+// FIX: Use lowercase '/cards/:userId' to match frontend requests
+app.get('/cards/:userId', (req, res) => {
     const userId = req.params.userId;
     const query = 'SELECT * FROM Cards WHERE User_ID = ?';
     
@@ -265,6 +266,13 @@ app.delete('/loanTypes/:id', deleteEntity('Loan_Types', 'Loan_Type_ID'));
 
 // CRUD operations for Overdrafts
 
+// FIX: Added missing POST endpoint for Overdrafts
+app.post('/overdrafts', (req, res) => {
+    const { Account_ID, limit, Start_Date, End_Date, Status } = req.body;
+    const query = 'INSERT INTO Overdrafts (Account_ID, `Limit`, Start_Date, End_Date, Status) VALUES (?, ?, ?, ?, ?)';
+    executeQuery(query, [Account_ID, limit, Start_Date, End_Date, Status], res, 'Overdrafts created successfully');
+});
+
 app.get('/overdrafts/:userId', (req, res) => {
     const userId = req.params.userId;
     const query = `
@@ -342,7 +350,7 @@ app.post('/feedbacks', createEntity('Customer_Feedback', [
     'Feedback_Date',
     'Feedback_Type',
     'Comments',
-    'Rating'
+    'Rating'
 ]));
 app.get('/feedbacks', getAllEntities('Customer_Feedback'));
 app.put('/feedbacks/:id', updateEntity('Customer_Feedback', ['User_ID', 'Feedback_Date', 'Feedback_Type', 'Comments', 'Rating'], 'Feedback_ID'));

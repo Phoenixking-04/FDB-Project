@@ -50,7 +50,7 @@ const AccountTable = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`http://localhost:5001/overdrafts/${editedAccount.Account_ID}`, {
+      const response = await fetch(`http://localhost:5001/accounts/${editedAccount.Account_ID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

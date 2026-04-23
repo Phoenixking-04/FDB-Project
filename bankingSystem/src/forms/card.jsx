@@ -22,7 +22,7 @@ const CardForm = () => {
 
     const fetchCards = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/cards');
+            const response = await axios.get('http://localhost:5001/cardsall');
             setCards(response.data);
         } catch (error) {
             console.error('Error fetching cards:', error);
@@ -50,7 +50,7 @@ const CardForm = () => {
         }
 
         try {
-            await axios.post('http://localhost:5000/cards', card);
+            await axios.post('http://localhost:5001/cards', card);
             alert('Card created successfully!');
             fetchCards();
             setCard({
@@ -72,7 +72,7 @@ const CardForm = () => {
     const handleUpdate = async (id) => {
         const updatedCard = cards.find(c => c.Card_ID === id);
         try {
-            await axios.put(`http://localhost:5000/cards/${id}`, updatedCard);
+            await axios.put(`http://localhost:5001/cards/${id}`, updatedCard);
             alert('Card updated successfully!');
             fetchCards();
         } catch (error) {
